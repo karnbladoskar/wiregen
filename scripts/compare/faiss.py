@@ -1,5 +1,5 @@
 import numpy as np
-import faiss                   # make faiss available
+import faiss                    # make faiss available
 
 d = 64                           # dimension
 nb = 100000                      # database size
