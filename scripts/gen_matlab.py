@@ -29,11 +29,13 @@ class GenMatlab:
         elif self.operand == "product":
             self.operand = "Product"
             self.script += self.AddValues(20, self.ypos)
-        elif self.operand == "Constant":
+        elif self.operand == "constant":
             const1name = "Const_" + str(self.id)
             self.script += "add_block('simulink/Sources/Constant','my_untitled/" + const1name + "', 'Value','" + str(self.const1) + "');\n"
+            self.script += "set_param('my_untitled/" + const1name + "','position',[" + str(20) + ", " + str(self.ypos) + ", " + str(20+self.block_w) + ", " + str(self.ypos+self.block_h) + "]); \n"
+            self.ypos += 70
         else:
-            raise Exception("Block not yet implemented.")
+            print("Block not yet implemented.")
 
     def push_to_matlab(self):
         self.script += "save_system(modelname);\n "
@@ -71,5 +73,7 @@ if __name__ == '__main__':
     mat.run(2, "product", 2, 3, 30, 30)
     mat.run(3, "subtract", 8, 9, 30, 30)
     mat.run(4, "subtract", 8, 9, 30, 30)
+    mat.run(5, "constant", 5, 0, 30, 30)
+    mat.run(6, "subtract", 8, 9, 30, 30)
     mat.push_to_matlab()
 
