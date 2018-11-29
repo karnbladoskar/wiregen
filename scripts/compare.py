@@ -1,4 +1,5 @@
 from skimage.measure import compare_ssim as ssim
+import pandas as pd
 import cv2
 
 
@@ -54,11 +55,14 @@ class CompareImages:
         for i, file in enumerate(target_files):
             target_img = cv2.imread(self.TRG + file, 0)
             target_img = cv2.resize(target_img, (self.WIDTH, self.HEIGHT))
-            target_probs.append(self.compare_images(source_img, target_img))
+            target_probs.append((file, self.compare_images(source_img, target_img)))
 
-        print(target_probs)
+        target_probs_df = pd.DataFrame(target_probs)
+        target_probs_df = target_probs_df.sort_values(by=1, ascending=False)
 
-        return target_probs
+        print(target_probs_df)
+
+        return target_probs_df
 
 
 if __name__ == "__main__":

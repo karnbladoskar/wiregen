@@ -1,23 +1,18 @@
 import cv2
-import os
 import time
 import numpy as np
-import os, random
-from skimage.transform import resize
-from imgaug import augmenters as iaa
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
-import sys
 
+class GetRecording:
+    def __init__(self, WIDTH, HEIGHT):
+        self.WIDTH = WIDTH
+        self.HEIGHT = HEIGHT
 
-print("hej")
-
+    defl
 video_out = "recordedVid.avi"
 
 # Define the codec and creade VideoWriter object
 fourcc = cv2.VideoWriter_fourcc(*'MPEG')
-video_writer = cv2.VideoWriter(video_out, fourcc, 20.0, (640,480))
+video_writer = cv2.VideoWriter(video_out, fourcc, 20.0, (self.WIDTH, self.HEIGHT))
 
 cap = cv2.VideoCapture(0)
 t = time.time()
@@ -30,7 +25,7 @@ while( t3 < 10):   #(cap.isOpened()) for continuous recording
         video_writer.write(np.uint8(frame))
 
         # Display the resulting frame
-        cv2.imshow('frame',frame)
+        cv2.imshow('frame', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
     else:
