@@ -30,7 +30,7 @@ class GenMatlab:
             self.operand = "Product"
             self.script += self.AddValues(20, self.ypos)
         elif self.operand == "constant":
-            const1name = "Const_" + str(self.id)
+            const1name = "Constant_" + str(self.id)
             self.script += "add_block('simulink/Sources/Constant','my_untitled/" + const1name + "', 'Value','" + str(self.const1) + "');\n"
             self.script += "set_param('my_untitled/" + const1name + "','position',[" + str(20) + ", " + str(self.ypos) + ", " + str(20+self.block_w) + ", " + str(self.ypos+self.block_h) + "]); \n"
             self.ypos += 70
